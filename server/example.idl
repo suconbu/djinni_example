@@ -1,0 +1,9 @@
+
+hello_world = interface +c {
+    static create(msg: string, callback: hello_callback): hello_world;
+    msg(): string;
+}
+
+hello_callback = interface +j {
+    invoke(msg: string);
+}
