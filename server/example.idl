@@ -1,9 +1,22 @@
 
-hello_world = interface +c {
-    static create(msg: string, callback: hello_callback): hello_world;
-    msg(): string;
+HelloContent = record {
+    id: i32;
+    text: string;
+    authors: set<string>;
 }
 
-hello_callback = interface +j {
-    invoke(msg: string);
+HelloMessage = record {
+    id: i32;
+    tag: string;
+    contents: list<HelloContent>;
+    data: binary;
+}
+
+HelloWorld = interface +c {
+    static create(msg: string, callback: HelloCallback): HelloWorld;
+    msg(): HelloMessage;
+}
+
+HelloCallback = interface +j {
+    invoke(msg: HelloMessage);
 }

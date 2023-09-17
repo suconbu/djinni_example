@@ -8,10 +8,15 @@ package_path="com/suconbu/example"
 ./djinni --idl ${server_dir}/example.idl \
     --jni-out ${generated_dir}/jni/ \
     --cpp-out ${generated_dir}/cpp/ \
+        --cpp-json-serialization nlohmann_json \
     --java-out ${generated_dir}/java/${package_path} \
         --java-package ${package_path//\//.} \
-        --ident-jni-class NativeFooBar \
-        --ident-jni-file NativeFooBar
+        --ident-jni-class JniFooBar \
+        --ident-jni-file JniFooBar
+
+if [ "$?" != "0" ]; then
+    exit 1
+fi
 
 cmake -S. -Bbuild
 cmake --build build
